@@ -1,6 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { db } from "./db";
+import { sql } from "drizzle-orm";
 
 const app = express();
 app.use(express.json());
@@ -37,6 +39,38 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Auto-create tables if they don't exist (runs on every startup, safe to repeat)
+  await db.execute(sql`
+    CREATE TABLE IF NOT EXISTS custom_presets (
+      name TEXT PRIMARY KEY,
+      width_factor INTEGER NOT NULL,
+      height_factor INTEGER NOT NULL,
+      global_x_offset INTEGER NOT NULL DEFAULT 0,
+      global_y_offset INTEGER NOT NULL DEFAULT -200
+    );
+    CREATE TABLE IF NOT EXISTS mockup_layouts (
+      mockup_id INTEGER PRIMARY KEY,
+      config JSONB NOT NULL
+    );
+    CREATE TABLE IF NOT EXISTS projects (
+      id SERIAL PRIMARY KEY,
+      name TEXT NOT NULL,
+      last_edited TEXT NOT NULL,
+      design_image TEXT NOT NULL,
+      selected_mockup_id INTEGER NOT NULL DEFAULT 1,
+      shirt_position INTEGER NOT NULL DEFAULT 0,
+      design_size INTEGER NOT NULL DEFAULT 60,
+      design_position TEXT NOT NULL DEFAULT 'center',
+      design_x_offset INTEGER NOT NULL DEFAULT 0,
+      design_y_offset INTEGER NOT NULL DEFAULT 0,
+      design_ratio TEXT NOT NULL DEFAULT 'square',
+      thumbnail TEXT NOT NULL,
+      placement_settings TEXT DEFAULT '{}',
+      design_width_factor INTEGER DEFAULT 450,
+      design_height_factor INTEGER DEFAULT 300,
+      global_y_offset INTEGER DEFAULT 0
+    );
+  `);
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
