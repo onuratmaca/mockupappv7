@@ -1,0 +1,90 @@
+{
+  "5": {
+    "shirtConfigs": [
+      {
+        "x": 500,
+        "y": 750,
+        "name": "White",
+        "index": 0,
+        "designOffset": {
+          "x": 90,
+          "y": -90
+        }
+      },
+      {
+        "x": 1500,
+        "y": 750,
+        "name": "Ivory",
+        "index": 1,
+        "designOffset": {
+          "x": 30,
+          "y": -75
+        }
+      },
+      {
+        "x": 2500,
+        "y": 750,
+        "name": "Butter",
+        "index": 2,
+        "designOffset": {
+          "x": -45,
+          "y": -80
+        }
+      },
+      {
+        "x": 3500,
+        "y": 750,
+        "name": "Banana",
+        "index": 3,
+        "designOffset": {
+          "x": -90,
+          "y": -90
+        }
+      },
+      {
+        "x": 500,
+        "y": 2250,
+        "name": "Mustard",
+        "index": 4,
+        "designOffset": {
+          "x": 95,
+          "y": -160
+        }
+      },
+      {
+        "x": 1500,
+        "y": 2250,
+        "name": "Peachy",
+        "index": 5,
+        "designOffset": {
+          "x": 30,
+          "y": -180
+        }
+      },
+      {
+        "x": 2500,
+        "y": 2250,
+        "name": "Yam",
+        "index": 6,
+        "designOffset": {
+          "x": -30,
+          "y": -170
+        }
+      },
+      {
+        "x": 3500,
+        "y": 2250,
+        "name": "Khaki",
+        "index": 7,
+        "designOffset": {
+          "x": -75,
+          "y": -160
+        }
+      }
+    ],
+    "globalXOffset": 0,
+    "globalYOffset": -200,
+    "designWidthFactor": 400,
+    "designHeightFactor": 400
+  }
+}
